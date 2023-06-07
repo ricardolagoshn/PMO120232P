@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class ActivityCombo extends AppCompatActivity {
 
     SQLiteConexion conexion;
+    SQLiteConexion hola;
     Spinner combopersonas;
     EditText nombres, apellidos, correo;
 
