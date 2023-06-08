@@ -2,4 +2,5 @@
     <string name="app_name">PMO120232P</string>
     <string name="btnmostrar">Mostrar Datos</string>
     <string name="btninserta">Agregar</string>
+    <string name="btnfoto">Tomar Foto</string>
 </resources>
