@@ -1,14 +1,18 @@
 package com.example.pmo120232p;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -61,13 +65,33 @@ public class ActivityFoto extends AppCompatActivity {
             {
                 TomarFoto();
             }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "Se necesita el permiso para accder a la camara", Toast.LENGTH_LONG).show();
+            }
         }
-        else
+
+    }
+
+    private void TomarFoto()
+    {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if(intent.resolveActivity(getPackageManager())!= null)
         {
-            Toast.makeText(getApplicationContext(), "Se necesita el permiso para accder a la camara", Toast.LENGTH_LONG).show();
+            startActivityForResult(intent, peticion_captura_imagen );
         }
     }
 
-    private void TomarFoto() {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode  == peticion_captura_imagen)
+        {
+            Bundle extras = data.getExtras();
+            Bitmap imagen = (Bitmap) extras.get("data");
+            Objetoimagen.setImageBitmap(imagen);
+        }
     }
 }
