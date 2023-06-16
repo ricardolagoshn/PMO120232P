@@ -101,9 +101,21 @@ public class ActivityFoto extends AppCompatActivity {
 
         if(requestCode  == peticion_captura_imagen)
         {
+            /*
             Bundle extras = data.getExtras();
             Bitmap imagen = (Bitmap) extras.get("data");
             Objetoimagen.setImageBitmap(imagen);
+             */
+
+            try {
+                File foto = new File(currentPhotoPath);
+                Objetoimagen.setImageURI(Uri.fromFile(foto));
+            }
+            catch (Exception ex)
+            {
+                ex.toString();
+            }
+
         }
     }
 
